@@ -60,3 +60,22 @@ SF12：4096 点
 
 ## 五、入网方式
 
+1.OTAA
+
+（1）Node 发送 **Join Request**：包含 DevEUI（设备唯一ID）、AppEUI（应用ID）、AppKey（长期密钥）
+
+（2）Network Server 验证合法性 → 回复 **Join Accept**
+
+（3）Node 生成 **会话密钥（NwkSKey + AppSKey）**
+
+（4）入网成功，开始正常上报数据
+
+2.ABP：节点在出厂/配置时就写入会话密钥，不需要无线协商，直接加入网络。
+
+## 六、帧结构
+
+| 部分           | 描述                   | 长度    | 作用                                                |
+| -------------- | ---------------------- | ------- | --------------------------------------------------- |
+| **MHDR**       | Message Header         | 1 byte  | 指示帧类型（Join / Data / Ack）                     |
+| **MACPayload** | 数据 + 控制信息        | 可变    | 包含 FRMPayload（用户数据）和 FCtrl/FCnt/DevAddr 等 |
+| **MIC**        | Message Integrity Code | 4 bytes | 校验帧是否被篡改，保证完整性                        |
