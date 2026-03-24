@@ -26,13 +26,15 @@ iwr -useb https://open-claw.org.cn/install-cn.ps1 | iex
 # 初始化配置
 openclaw onboard --flow quickstart
 # 启动
-openclaw start
+openclaw gateway start
 # 重启网关 
 openclaw gateway restart 
 # 查看状态 
 openclaw status 
 # 停止服务 
-openclaw stop
+openclaw gateway stop
+# 获取网页地址
+openclaw dashboard --no-open
 ```
 
 三、打开chrome浏览器
